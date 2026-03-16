@@ -1,0 +1,20 @@
+# Data pipeline
+duckdb
+pandas
+numpy
+
+# DBT (SQL transformations)
+dbt-core
+dbt-duckdb
+
+# Orchestration
+prefect
+
+# ML
+scikit-learn
+
+# Dashboard
+streamlit
+
+# Utilities
+pyyaml

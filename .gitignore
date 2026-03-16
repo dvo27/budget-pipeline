@@ -1,0 +1,9 @@
+data/raw
+
+*.duckdb
+
+.venv/
+
+__pychache__/
+
+dbt_budget/target/
