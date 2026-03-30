@@ -7,6 +7,7 @@ from src.ingestion.parsers.base import BaseParser
 class DiscoverParser(BaseParser):
     def __init__(self):
         super().__init__('discover', 'credit_card')
+        # print('created discover parser')
 
     def _read_raw(self, filepath: Path) -> DataFrame:
         '''
@@ -23,6 +24,10 @@ class DiscoverParser(BaseParser):
         # normalizing Discover column names
         raw_df.columns = raw_df.columns.str.strip().str.lower().str.replace('.', '',
                                                                             regex=False).str.replace(' ', '_')
+        
+        # print('reading raw discover csv')
+        print(raw_df.head())
+
 
         return raw_df
 
@@ -38,12 +43,15 @@ class DiscoverParser(BaseParser):
         '''
 
         normalized = pd.DataFrame()
-        normalized['transaction_date'] = df['trans._date']
+        normalized['transaction_date'] = df['trans_date']
         normalized['post_date'] = df['post_date']
         normalized['original_description'] = df['description'].str.strip()
         normalized['description'] = normalized['original_description'].str.upper()
         normalized['amount'] = pd.to_numeric(
             df['amount'], errors='coerce') * -1
         normalized['category'] = df.get('category', None)
+
+        # print('normalized raw discover csv')
+
 
         return normalized

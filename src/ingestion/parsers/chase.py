@@ -7,6 +7,8 @@ from src.ingestion.parsers.base import BaseParser
 class ChaseParser(BaseParser):
     def __init__(self):
         super().__init__('chase', 'credit_card')
+        # print('created chase parser')
+
 
     def _read_raw(self, filepath: Path) -> DataFrame:
         '''
@@ -22,6 +24,9 @@ class ChaseParser(BaseParser):
 
         # normalizing chase column names
         raw_df.columns = raw_df.columns.str.strip().str.lower().str.replace(' ', '_')
+
+        # print('read raw chase csv')
+
 
         return raw_df
 
@@ -43,5 +48,8 @@ class ChaseParser(BaseParser):
         normalized['description'] = normalized['original_description'].str.upper()
         normalized['amount'] = pd.to_numeric(df['amount'], errors='coerce')
         normalized['category'] = df.get('category', None)
+        
+        # print('normalized raw chase csv')
+
 
         return normalized

@@ -7,6 +7,7 @@ from src.ingestion.parsers.base import BaseParser
 class WellsFargoParser(BaseParser):
     def __init__(self):
         super().__init__('wells_fargo', 'checking')
+        # print('created wf parser')
 
     def _read_raw(self, filepath: Path) -> DataFrame:
         """
@@ -24,6 +25,8 @@ class WellsFargoParser(BaseParser):
                              names=['date', 'amount', "star",
                                     "blank", "description"],
                              dtype=str,)
+        
+        # print('read raw wf csv')
 
         return raw_df
 
@@ -46,4 +49,5 @@ class WellsFargoParser(BaseParser):
         normalized['amount'] = pd.to_numeric(df['amount'], errors='coerce')
         normalized['category'] = None
 
+        # print('normalized raw wf csv')
         return normalized

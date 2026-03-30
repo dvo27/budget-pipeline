@@ -8,6 +8,7 @@ class Loader:
     def get_connection(self) -> duckdb.DuckDBPyConnection:
         # should auto create db file if not exists?
         con = duckdb.connect(str(DB_PATH))
+        print('connected to duckdb')
         return con
 
     def init_warehouse(self):
@@ -24,6 +25,8 @@ class Loader:
                 account_type VARCHAR,
                 original_description VARCHAR,
                 transaction_id VARCHAR PRIMARY KEY)""") 
+        
+        print('created warehouse')
        
         con.close()
     
@@ -31,7 +34,12 @@ class Loader:
         con = self.get_connection()
         
         before = con.sql("SELECT COUNT(*) FROM raw.transactions").fetchone()[0]
-        con.sql("INSERT OR IGNORE INTO raw.transactions SELECT * FROM df")
+        con.sql("""
+        INSERT OR IGNORE INTO raw.transactions 
+        (transaction_date, post_date, original_description, description, 
+        amount, category, source_bank, account_type, transaction_id)
+        SELECT * FROM df
+        """)
         after = con.sql("SELECT COUNT(*) FROM raw.transactions").fetchone()[0]
         new_rows_added = after - before
         
