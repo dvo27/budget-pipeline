@@ -10,3 +10,5 @@ dbt_budget/target/
 
 __pycache__/
 *.pyc
+
+.vscode/

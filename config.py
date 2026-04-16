@@ -74,7 +74,7 @@ CATEGORY_BUCKETS = {
     "investments": "savings",
     "extra_debt_payment": "savings",
     "emergency_fund": "savings",
-    
+
     # Income
     "income": "income",
     "direct_deposit": "income",

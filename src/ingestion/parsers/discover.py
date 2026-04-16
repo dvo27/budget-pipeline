@@ -26,7 +26,7 @@ class DiscoverParser(BaseParser):
                                                                             regex=False).str.replace(' ', '_')
         
         # print('reading raw discover csv')
-        print(raw_df.head())
+        # print(raw_df.head())
 
 
         return raw_df
