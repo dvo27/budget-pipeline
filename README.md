@@ -85,4 +85,13 @@ Premise
 - Then, loader.py initalizes the duckdb data warehouse that will store our transactions as SQL tables
 - After warehouse has been created and our table has been made according to transaction schema, we load each transaction from the parsed DataFrames
 - Transactions are loaded into the raw.transactions table where our DBT models will work on transforming the data to add further context in individual layers
-    - ex. Whether the transaction was income, categorizing it according to config categories, grouping by month, how much of our budget was spent or saved, etc
+    - ex. Whether the transaction was income, categorizing it according to config categories, grouping by month, how much of our budget was spent or saved, etc'
+- How our pipeline works end-to-end:
+        CSV files → parsers → raw.transactions → classify_dataframe → update_categories
+                                                                            ↓
+                                    stg_transactions ← dbt run ← raw.transactions
+                                            ↓
+                                int_transactions_enriched
+                                            ↓
+                        fct_monthly_spending + fct_budget_vs_actual
+

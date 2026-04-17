@@ -2,6 +2,9 @@ import pandas as pd
 
 KEYWORD_RULES = {
     "rent": ["WT FED"],
+    "reimbursement": ["ZELLE FROM JASON TRUONG NGUYEN", "ZELLE FROM LY BRANDON", 
+                      "ZELLE FROM TRAN BRANDON", "ZELLE FROM NGUYEN KADEN",
+                      "ONLINE TRANSFER FROM VO D EVERYDAY"],
     "utilities": ["ZELLE TO CURTIS", "SO CAL EDISON"],
     "shopping": ["MICHAELS STORES", "LAZ PARKING"],
     "subscriptions": ["SPOTIFY", "APPLE.COM/BILL", "OPENAI.COM", "ABC*40120", "PLAYSTATION"],
@@ -10,7 +13,7 @@ KEYWORD_RULES = {
     "groceries": ["TRADER JOE", "RALPHS"],
     "savings": ["GOLDMAN SACHS", "ROBINHOOD"],
     "credit_card": ["CHASE CREDIT CRD", "DISCOVER"],
-    "income": ["UNIVERSITY OF CA"]
+    "income": ["UNIVERSITY OF CA", "VENMO CASHOUT"]
 }
 
 def classify_transaction(description: str) -> str:

@@ -39,6 +39,6 @@ if __name__ == "__main__":
     # update raw.transactions with the correct categories per transaction
     LoaderClass.update_categories(classified)
     
-    transactions = LoaderClass.get_connection().sql(
-        'SELECT * FROM raw.transactions').show()
+    # transactions = LoaderClass.get_connection().sql(
+    #     'SELECT * FROM raw.transactions').show()
     
